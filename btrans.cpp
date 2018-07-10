@@ -47,8 +47,6 @@ main (int argc, char* argv[]){
     }
   }
 
-//cout << function_choice << endl;
-
 /** IF ENCRYPTING */
   if (function_choice == 'e'){
     crypto::InputBinaryToVector(&plaintext_input);
@@ -71,20 +69,14 @@ main (int argc, char* argv[]){
 
 /** Use key vector to create encrypted_output vector*/
     int block_size = key.size();
-    //cout << block_size << endl;
     int plaintext_size = plaintext_input.size();
-    //cout << plaintext_size << endl;
     int extra_bytes = plaintext_size%block_size;
-    //cout << extra_bytes << endl;
     encrypted_output.resize(plaintext_size - extra_bytes);
-    //cout << encrypted_output.size() << endl;;
 
     int j = 0;
     int block = 0;
     for (int i = 0; i < (plaintext_size - extra_bytes); i++){
       encrypted_output.at(i) = plaintext_input.at(block + key.at(j));
-      //cout << "char: " << encrypted_output.at(i) << " pos: " << i << " block: " << block;
-      //cout << " j: "<< j << " plain was: " << plaintext_input.at(i) << endl;
       if (j == 3){
         j=0;
         block = block + 4;
